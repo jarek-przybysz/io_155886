@@ -1,4 +1,4 @@
-# io_155886
+#20.10.2024
 #Jaroslaw Przybysz
 #21.10.2024 10:22
 #zmiana 1 
