@@ -50,10 +50,12 @@ Osoba chcąca zakupić produkt na aukcji.
 
 [Sprzedający](#ac1):
 * [UC1](#uc1): Wystawienie produktu na aukcję
-* ...
+* [UC5](#uc5): Sprzedaż produktu
 
 [Kupujący](#ac2)
-* ...
+* [UC2](#uc2): Złożenie oferty kupna
+* [UC3](#uc3): Wygranie aukcji
+* [UC4](#uc4): Przekazanie należności sprzedającemu
 
 ---
 <a id="uc1"></a>
@@ -77,21 +79,76 @@ Osoba chcąca zakupić produkt na aukcji.
 ---
 
 <a id="uc2"></a>
-### UC2: ...
+### UC2: Złożenie oferty kupna
 
-**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2), ...
+**Aktorzy:**  [Sprzedający](#ac1), [Kupujący](#ac2)
 
 **Scenariusz główny:**
-1. ...
+1. [Kupujący](#ac2) zgłasza do systemu chęć przebicia aktualnej oferty.
+2. System prosi o podanie ceny zakupu.
+3. [Kupujący](#ac2) podaje cenę za jaką chce licytować.
+4. System weryfikuje poprawność danych.
+5. System informuje o poprawnym przebiciu oferty.
+6. [Sprzedający](#ac1) przekazuje nową cenę.
 
 **Scenariusze alternatywne:** 
 
-1.A. ...
-* 4.A.1. ...
+1.A. Podano za niską cenę przebicia.
+* 4.A.1. System odrzuca ofertę. (cena za niska)
+
 
 ---
 
-## Obiewkty biznesowe (inaczje obiekty dziedzinowe lub informatycjne)
+<a id="uc3"></a>
+### UC3: Wygranie aukcji
+
+**Aktorzy:**  [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. Czas akcji się skończył.
+2. System blokuje wstawianie ofert.
+2. System informuje zwyciezcę aukcji  ([Kupującego](#ac2)) o wygranej.
+
+---
+
+<a id="uc4"></a>
+### UC4: Przekazanie należności sprzedającemu
+
+**Aktorzy:**  [Sprzedający](#ac1), [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. [Kupujący](#ac2) przekazuje należność do [Sprzedającego](#ac1).
+2. System weryfikuje poprawność danych.
+
+
+**Scenariusze alternatywne:**
+
+1.A. Podano błedną kwotę.
+* 4.A.1. System informuje o przekazanej błędnej kwocie. 
+* 4.A.2. Przejdź do punktu 1.
+
+---
+
+<a id="uc5"></a>
+### UC5: Sprzedaż produktu
+
+**Aktorzy:**  [Sprzedający](#ac1), [Kupujący](#ac2)
+
+**Scenariusz główny:**
+
+1. [Kupujący](#ac2) przekazuje dane wysyłki do [Sprzedającego](#ac1).
+2. System weryfikuje poprawność danych.
+3. [Sprzedający](#ac1) wysyła przedmiot.
+
+**Scenariusze alternatywne:**
+
+1.A. Podano błedne dane.
+* 4.A.1. System informuje o błędnie podanych danych.
+* 4.A.2. Przejdź do punktu 1.
+
+---
+
+## Obiekty biznesowe (inaczje obiekty dziedzinowe lub informatycjne)
 
 ### BO1: Aukcja
 
@@ -100,6 +157,19 @@ Aukcja jest formą zawierania transakcji kupna-sprzedaży, w której Sprzedając
 ### BO2: Produkt
 
 Fizyczny lub cyfrowy obiekt, który ma zostać sprzedany w ramach aukcji.
+
+### BO3: Cena
+
+Wartość, którą musi zapłacić kupujący za wygrany produkt.
+
+### BO4: Paczka
+
+Produkt, który posiada dane wysyłkowe.
+
+### BO5: Oferta
+
+Kupujący składa ofertę za która jest w stanie kupić produkt.
+
 
 ## Reguły biznesowe
 
@@ -112,7 +182,13 @@ Złożenie oferty wymaga zaproponowania kwoty wyższej niż aktualnie oferowana 
 <a id="br2"></a>
 ### BR2: Rozstrzygnięcie aukcji
 
-Aukcję wygrywa ten z [Kupujący](#ac2)ch, który w momencie jej zakończenia (upłynięcia czasu) złożył najwyższą ofertę.
+Aukcję wygrywa ten z [Kupujących](#ac2), który w momencie jej zakończenia (upłynięcia czasu) złożył najwyższą ofertę.
+
+<a id="br3"></a>
+### BR3: Przebijanie oferty
+
+[Kupujący](#ac2) który w momencie trwania aukcji złożył najwyższą ofertę, nie może jej przebić.
+
 
 ## Macierz CRUDL
 
