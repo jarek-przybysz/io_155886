@@ -1,0 +1,24 @@
+zad1:
+1:Dekorator 
+InputStream: 
+2: rola: component
+3: rola decorator
+4: FilterInputStream( InputStream )
+5: CheckedInputStream ( InputStream, Checksum )
+6: getChecksum (): return cksum
+7: FileInputStream
+8: concretecomponent
+9: concretedecorator
+
+chcemy móc odbierać odpowiedzialność za strumieniowanie,
+chcemy dodawać odpowiedzialności dynamicznie
+
+zad2:
+10: kompozyt
+11: rola: Composite
+12: Komenda
+13: Invoker
+14: addMouseListener(new MouseListener()), addActionListener(new ActionListener()) 
+15: SierpinskiRunner
+16: SierpinskiRunner
+17: ConcreteCommand
